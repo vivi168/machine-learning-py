@@ -14,8 +14,9 @@ def lr_cost_function(theta, X, y, l):
 
     m = len(y)
     h = sigmoid(X.dot(theta))
-    J = (1 / m) * (-y.T.dot(np.log(h)) - (1 - y).T.dot(np.log(1 - h))) + l / (
-        2 * m) * (theta_reg.T.dot(theta_reg))
+    J_reg = l / (2 * m) * (theta_reg.T.dot(theta_reg))
+
+    J = (1 / m) * (-y.T.dot(np.log(h)) - (1 - y).T.dot(np.log(1 - h))) + J_reg
     grad = (1 / m) * (X.T.dot(h - y)) + l / m * theta_reg
 
     return J, grad
